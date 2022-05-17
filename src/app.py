@@ -10,6 +10,7 @@ import sys
 
 #English Basketball Vocabulary -> https://www.marca.com/blogs/tiros-libres/2011/10/17/el-diccionario-inglesespanol-de.html
 
+
 if __name__ == "__main__":
     
     #we load the players and assign them to its teams. It returns two teams
