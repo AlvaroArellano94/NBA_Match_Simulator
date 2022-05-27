@@ -6,10 +6,10 @@ DROP TABLE IF EXISTS Player_Actions_Match;
 DROP TABLE IF EXISTS Players;
 DROP TABLE IF EXISTS Teams;
 DROP TABLE IF EXISTS Match;
-
+DROP TABLE IF EXISTS Rosters;
 
 CREATE TABLE Players (
-    Id_Player int NOT NULL PRIMARY KEY,
+    Id_Player int IDENTITY(1,1) PRIMARY KEY,
     Player_Name varchar(255) NOT NULL,
     Position int,
     Offense_Participation int,
@@ -19,13 +19,22 @@ CREATE TABLE Players (
 );
 
 CREATE TABLE Teams (
-    Id_Team int NOT NULL PRIMARY KEY,
+    Id_Team int IDENTITY(1,1) PRIMARY KEY,
     Team_Name varchar(255) NOT NULL,
     Team_Conference varchar(255)
 );
 
+
+CREATE TABLE Rosters (
+    Id_Team int,
+    Id_Player int,
+    CONSTRAINT PK_Rosters PRIMARY KEY(Id_Team, Id_Player)
+);
+
+
+--it needs to be implemented in the python app
 CREATE TABLE Match (
-    Id_Match int NOT NULL PRIMARY KEY,
+    Id_Match int IDENTITY(1,1) PRIMARY KEY,
     Id_Team_Local int,
     Id_Team_Abroad int,
     Start_Time smalldatetime,
@@ -33,13 +42,12 @@ CREATE TABLE Match (
     Winner_Team_Id int
 );
 
+--This table is created as a "log" of what's happening in the match, but it is not inserted into the model
 CREATE TABLE Player_Actions_Match (
     Id_Match int NOT NULL,
     Id_Player int,
     Action_Time int,
     Action_Name varchar(255),
-    CONSTRAINT FK_Id_Match_Act FOREIGN KEY (Id_Match) REFERENCES Match(Id_Match),
-    CONSTRAINT FK_Id_Player_Act FOREIGN KEY (Id_Player) REFERENCES Players(Id_Player),
     CONSTRAINT PK_Player_Actions_Match PRIMARY KEY(Id_Match, Id_Player, Action_Time)
 );
 
@@ -65,5 +73,6 @@ CREATE TABLE Player_Stats_Match (
     CONSTRAINT FK_Id_Match FOREIGN KEY (Id_Match) REFERENCES Match(Id_Match),
     CONSTRAINT FK_Id_Player FOREIGN KEY (Id_Player) REFERENCES Players(Id_Player),
     CONSTRAINT FK_Id_Team FOREIGN KEY (Id_Team) REFERENCES Teams(Id_Team),
+    CONSTRAINT FK_Roster FOREIGN KEY (Id_Team, Id_Player) REFERENCES Rosters(Id_Team, Id_Player),
     CONSTRAINT PK_Player_Stats_Match PRIMARY KEY(Id_Match, Id_Player)
 );
