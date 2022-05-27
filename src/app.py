@@ -8,12 +8,9 @@ import time
 from numpy.random import choice
 import sys
 
-#English Basketball Vocabulary -> https://www.marca.com/blogs/tiros-libres/2011/10/17/el-diccionario-inglesespanol-de.html
-
-
 if __name__ == "__main__":
     
-    #we load the players and assign them to its teams. It returns two teams
+    #This function loads the players and assign them to its teams. It returns two teams.
     local_Team, abroad_Team = players_team_loader()
     
     #here you can find each 
