@@ -2,6 +2,7 @@ from player import Player  #hola
 from team import Team
 from load_teams import players_team_loader
 from match import play_possession_by_quarter, action_by_possesion, rebound_result, rebound_action, type_shoot_weight_selection, change_possession_rebound
+from load_match_and_stats import insert_match_to_db, get_match_id, update_match_info_to_db, insert_player_stats_Match_to_db
 import random
 #¿Inicializar el seed?
 import time
@@ -23,9 +24,24 @@ if __name__ == "__main__":
 
     #Here I am creating the variables and inform them as the beginning of the match
     game_t_count = 0 #variable that counts the seconds of the game
-    possession_Item = round(random.random()) #0 (will be local_Team) or 1(will be abroad_Team). 
+    possession_Item = round(random.random()) #variable for the possession: 0 (will be local_Team) or 1(will be abroad_Team). 
     team_ls = [local_Team, abroad_Team]
-    quarter_num = 1  #in the last possession of the quarter, this value will be incremented in 1. 
+    quarter_num = 1  #in the last possession of the quarter, this value will be incremented in 1.
+    
+    ####LOAD INFO INTO DATABASE OF MATCH AND PLAYER_STATS_MATCH
+    #
+    insert_match_to_db(local_Team, abroad_Team)
+    #ahora procedemos a obtener el id de este match, para posteriormente actualizar info
+    id_Match = get_match_id(local_Team, abroad_Team)
+
+    #insert stats into db
+    #for loop with info with local team players
+    for player_name in local_Team.roster.keys():
+        insert_player_stats_Match_to_db(id_Match, local_Team.roster[player_name], local_Team.ID_Team)
+
+    #for loop with info with abroad team players
+    for player_name in abroad_Team.roster.keys():
+        insert_player_stats_Match_to_db(id_Match, abroad_Team.roster[player_name], abroad_Team.ID_Team)
 
     #now the match starts, 
     while game_t_count <= quarter_time_dict[4]:
@@ -218,6 +234,15 @@ if __name__ == "__main__":
 
         elif last_possession_quarter == True and quarter_num == 4:
             print(f"The 4 quarter has ended.")
+
+            #UPDATE MATCH TABLE TO ADD THE LAST INFO
+            #utilizamos la variable id_match para actualizar la info
+            
+            local_team_points =  local_Team.get_total_team_points()
+            abroad_team_points = abroad_Team.get_total_team_points()
+            winning_team = local_Team.ID_Team if local_team_points>= abroad_team_points else abroad_Team.ID_Team
+
+            update_match_info_to_db(id_Match, winning_team)
     
     #the end of the match
     

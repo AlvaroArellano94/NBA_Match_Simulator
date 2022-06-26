@@ -27,7 +27,7 @@ class Player:
         self.fouled_out = False
         self.on_court = on_court
         self.seconds_played = 0
-        self.minutes_played = round(self.seconds_played / 60)  #the decimals are not used.
+        #self.minutes_played = round(self.seconds_played / 60)  #the decimals are not used.
         #¿minutes played? Stage 2
     
     def __str__(self):
@@ -101,6 +101,15 @@ class Player:
     def add_seconds_played(self, posssession_seconds):
         if self.on_court == True:
             self.seconds_played += posssession_seconds
+    
+    def get_points_made(self):
+        
+        points_1 = self.attempts_statistics["attempt_1_made"]
+        points_2 = self.attempts_statistics["attempt_2_made"]
+        points_3 = self.attempts_statistics["attempt_3_made"]
+        total_points = points_1 + points_2 + points_3
+        return total_points
+
     
 
 

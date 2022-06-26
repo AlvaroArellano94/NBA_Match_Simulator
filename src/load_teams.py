@@ -21,15 +21,15 @@ def players_team_loader():
         #equipos creados!
         cursor_Memphis_info = cursor.execute('SELECT * FROM dbo.Teams where Id_Team=1')
         for team_info in cursor_Memphis_info:
-            local_Team = Team(team_name = team_info[1], is_local_team = True, team_conference = team_info[2])
+            local_Team = Team(ID_Team= team_info[0], team_name = team_info[1], is_local_team = True, team_conference = team_info[2])
 
         cursor_Minessota_info = cursor.execute('SELECT * FROM dbo.Teams where Id_Team=2')
         for team_info in cursor_Minessota_info:
-            abroad_Team = Team(team_name = team_info[1], is_local_team = False, team_conference = team_info[2])
+            abroad_Team = Team(ID_Team= team_info[0], team_name = team_info[1], is_local_team = False, team_conference = team_info[2])
         print(local_Team.team_name)
         
         #Vamos a generar los jugadores
-        select_str_Memphis = 'SELECT * FROM dbo.Players where Id_Player in (SELECT Id_Player FROM dbo.Rosters where Id_Team=1);'
+        select_str_Memphis = f'SELECT * FROM dbo.Players where Id_Player in (SELECT Id_Player FROM dbo.Rosters where Id_Team=1);'
         print(select_str_Memphis)
         cursor_Memphis_Players = cursor.execute(select_str_Memphis)
 

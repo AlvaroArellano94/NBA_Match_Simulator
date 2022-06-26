@@ -1,7 +1,7 @@
 USE NBA_Match_Simulator;
 --Memphis starter team
-INSERT INTO Players VALUES ('J. Jackson Jr.',4, 3, 0.83, 0.51, 0.39);
-INSERT INTO Players VALUES ('D. Brooks', 3, 2, 0.85, 0.45, 0.40);
+INSERT INTO dbo.Players VALUES ('J. Jackson Jr.',4, 3, 0.83, 0.51, 0.39);
+INSERT INTO dbo.Players VALUES ('D. Brooks', 3, 2, 0.85, 0.45, 0.40);
 INSERT INTO dbo.Players VALUES ('S. Adams', 5, 1, 0.75, 0.52, 0.15);
 INSERT INTO dbo.Players VALUES ('J. Morant', 1, 3, 0.88, 0.50, 0.38);
 INSERT INTO dbo.Players VALUES ('D. Bane', 2, 3, 0.85, 0.40, 0.43);

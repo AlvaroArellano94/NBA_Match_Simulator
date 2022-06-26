@@ -15,3 +15,7 @@ SELECT * FROM dbo.Players;
 */
 
 --DELETE FROM dbo.Players WHERE Id_player = 1;
+
+--SELECT max(Id_Match) FROM dbo.Match where Id_Team_Local={local_Team} and Id_Team_Abroad={abroad_Team};
+SELECT * FROM DBo.Players;
+SELECT max(Id_Player) FROM dbo.Players where Position=1 and Offense_Participation=3;

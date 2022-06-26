@@ -3,8 +3,9 @@ import random
 from numpy.random import choice
 
 class Team:
-    def __init__(self, team_name, is_local_team, team_conference):    
+    def __init__(self, ID_Team, team_name, is_local_team, team_conference):    
     #ID_player, name, fga_1_average, fga_2_average, fga_3_average):
+        self.ID_Team = ID_Team
         self.team_name = team_name
         self.is_local_team = is_local_team
         self.team_conference = team_conference
@@ -84,6 +85,14 @@ class Team:
                    on_court_poss_assistant_players.append(self.roster[player_name])
         
         return random.choice(on_court_poss_assistant_players).name
+    
+    def get_total_team_points(self):
+        total_points = 0
+
+        for player_name in self.roster.keys():
+            total_points += self.roster[player_name].get_points_made()
+        
+        return total_points
 
         
 
