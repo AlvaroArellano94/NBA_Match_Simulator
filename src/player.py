@@ -107,7 +107,7 @@ class Player:
         points_1 = self.attempts_statistics["attempt_1_made"]
         points_2 = self.attempts_statistics["attempt_2_made"]
         points_3 = self.attempts_statistics["attempt_3_made"]
-        total_points = points_1 + points_2 + points_3
+        total_points = points_1 + points_2*2 + points_3*3
         return total_points
 
     

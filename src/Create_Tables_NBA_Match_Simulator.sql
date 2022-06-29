@@ -43,6 +43,8 @@ CREATE TABLE Match (
 );
 
 --This table is created as a "log" of what's happening in the match, but it is not inserted into the model
+--This table for this stage is not working yet
+/*
 CREATE TABLE Player_Actions_Match (
     Id_Match int NOT NULL,
     Id_Player int,
@@ -50,6 +52,7 @@ CREATE TABLE Player_Actions_Match (
     Action_Name varchar(255),
     CONSTRAINT PK_Player_Actions_Match PRIMARY KEY(Id_Match, Id_Player, Action_Time)
 );
+*/
 
 CREATE TABLE Player_Stats_Match (
     Id_Match int NOT NULL,
@@ -62,6 +65,7 @@ CREATE TABLE Player_Stats_Match (
     Attempt_3 int,
     Attempt_3_Made int,  
     Points_Made int,
+    Rebounds_Made int,
     Assists_Made int,
     Steals_Made int,
     Blocks_Made int,

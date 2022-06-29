@@ -2,7 +2,7 @@ from player import Player  #hola
 from team import Team
 from load_teams import players_team_loader
 from match import play_possession_by_quarter, action_by_possesion, rebound_result, rebound_action, type_shoot_weight_selection, change_possession_rebound
-from load_match_and_stats import insert_match_to_db, get_match_id, update_match_info_to_db, insert_player_stats_Match_to_db
+from load_match_and_stats import insert_match_to_db, get_match_id, update_match_info_to_db, insert_player_stats_Match_to_db, update_player_stats_Match_to_db
 import random
 #¿Inicializar el seed?
 import time
@@ -13,7 +13,7 @@ if __name__ == "__main__":
     
     #This function loads the players and assign them to its teams. It returns two teams.
     local_Team, abroad_Team = players_team_loader()
-    
+
     #here you can find each 
     quarter_time_dict = {
         1: 720,
@@ -30,7 +30,9 @@ if __name__ == "__main__":
     
     ####LOAD INFO INTO DATABASE OF MATCH AND PLAYER_STATS_MATCH
     #
+    
     insert_match_to_db(local_Team, abroad_Team)
+    print("¿Se ha cargado correctamente?")
     #ahora procedemos a obtener el id de este match, para posteriormente actualizar info
     id_Match = get_match_id(local_Team, abroad_Team)
 
@@ -225,6 +227,13 @@ if __name__ == "__main__":
 
                 possession_Item = change_possession_rebound(rebound_situation, possession_Item) #depending on the result it changes or not the possession
 
+        #Actualizar la información de todos los jugadores en la BBDDs?
+        for player_name in local_Team.roster.keys():
+            update_player_stats_Match_to_db(id_Match, local_Team.roster[player_name])
+
+        for player_name in abroad_Team.roster.keys():
+            update_player_stats_Match_to_db(id_Match, abroad_Team.roster[player_name])
+
         #Last possession logic
         if last_possession_quarter == True and quarter_num != 4:
             print(f"The {quarter_num} quarter has ended. The {quarter_num+1} quarter will start in 30 seconds.")
@@ -243,6 +252,7 @@ if __name__ == "__main__":
             winning_team = local_Team.ID_Team if local_team_points>= abroad_team_points else abroad_Team.ID_Team
 
             update_match_info_to_db(id_Match, winning_team)
+            break #we use this command to end the match
     
     #the end of the match
     
