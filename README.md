@@ -6,7 +6,7 @@ Trabjo de fin del Máster de Análisis y Visualización de Datos Masivos
 # Objetivo
 El objetivo de este proyecto consiste en generar un Cuadro de Mando consultable en tiempo real que te de información clave sobre un partido de Baloncesto. Para este proyecto, se ha seleccionado un partido de la liga de baloncesto americana, la NBA. 
 
-#Estructura
+# Estructura
 El proyecto está estructurado en 3 bloques:
   (1)Aplicación desarrollada en Python: el objetivo de esta aplicación será el generar los datos referentes a un partido de baloncesto e insertar esta información en una      base de datos relacional.   
   (2)BBDDs alojada en Microsoft SQL Server: el objetivo de esta base de datos consiste en guardar y organizar los datos sobre el partido de baloncesto. De este modo,          esta información podrá ser consumida posteriormente por una herramienta de reporting. 
