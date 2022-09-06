@@ -14,4 +14,36 @@ El proyecto está estructurado en 3 bloques:
   
 # Consideraciones previas
 
+DOCKER
+
 A continuación, se van a listar todos los elementos que deben estar instalados para que la aplicación fucione correctamente:
+
+El primer elemento que necesitamos es la instalación del contenedor de Docker que contiene la Base de Datos de Microsoft SQL Server. Para tal, se debe ejecutar el siguiente comando en la linea de comando, sustituyendo en el comando aquellos elementos particulares de cada servidor:
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 --name "docker_container_name" --hostname "host_name"  -d mcr.microsoft.com/mssql/server:2019-latest 
+
+Podemos ver que el contenedor utilizado hace referencia a la última versión del 2019. 
+**Cabe destacar que en el 2022 se ha liberado una nueva versión, pero en el desarrollo de este proyecto se ha utilizado la versión de 2019.
+
+PYTHON
+Instalación módulo "numpy":
+pip3 install numpy
+(https://numpy.org/install/)
+
+pip3 install pypyodbc
+(https://pypi.org/project/pypyodbc/)
+
+pip3 install pandas
+(https://pandas.pydata.org/docs/getting_started/install.html)
+
+pip install python-dotenv
+(https://pypi.org/project/python-dotenv/)
+
+# Orden de Ejecución
+
+Ejecución de ficheros SQL:
+  (1)Create_DB.sql
+  (2)Create_Tables_NBA_Match_Simulator.sql
+  (3)Insert_Data_1_app.sql
+  (4)Insert_Data_2_app.sql
+

@@ -1,4 +1,4 @@
-from player import Player  #hola
+from player import Player
 from team import Team
 from load_teams import players_team_loader
 from match import play_possession_by_quarter, action_by_possesion, rebound_result, rebound_action, type_shoot_weight_selection, change_possession_rebound
