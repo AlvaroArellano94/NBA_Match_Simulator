@@ -11,7 +11,9 @@ El proyecto está estructurado en 3 bloques:
   (1)Aplicación desarrollada en Python: el objetivo de esta aplicación será el generar los datos referentes a un partido de baloncesto e insertar esta información en una      base de datos relacional.   
   (2)BBDDs alojada en Microsoft SQL Server: el objetivo de esta base de datos consiste en guardar y organizar los datos sobre el partido de baloncesto. De este modo,          esta información podrá ser consumida posteriormente por una herramienta de reporting. 
   (3)Aplicación utilizando la herramienta de dashboarding PowerBI: el objetivo de esta aplicación consiste en mostrar la información más relevante del partido.  
-  
+ 
+Adicionalmente, encontramos un archivo ".pbix" que es el Cuadro de Mando desarrollado en Power BI que actualiza la información de la base de datos en tiempo real.
+
 # Consideraciones previas
 
 DOCKER
